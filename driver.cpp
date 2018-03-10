@@ -114,7 +114,7 @@ for (i = 0; i < VOL; i++){
             myfile << *i << ' ' ;   // Print the contents of Simplex //
             }
                     
-            myfile << endl << endl ;
+            myfile << endl ;
             myfile.close();
                     
                     
@@ -149,7 +149,7 @@ for (i = 0; i < VOL; i++){
     myfile << *i << ' ' ;
     }
             
-    myfile << endl << endl ;
+    myfile << endl ;
     myfile.close();
             
             
