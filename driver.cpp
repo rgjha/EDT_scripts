@@ -39,13 +39,10 @@ for (i = 0; i < VOL; i++){
     if (fp) {
         
         fclose(fp);
-        cout << "We can proceed since the file EXISTS and we have five distinct origins, we will now shell !" << endl ;
         ofstream myfile;
         
         int Seed = atoi(argv[1])  ;
-        cout << "New origin is : " << Seed << endl ;
-                
-                
+            
         for ( i = 0 ; i < VOL ; i ++){
             
             if (data[i][0] == Seed){
@@ -97,12 +94,14 @@ for (i = 0; i < VOL; i++){
     
     else {
 
-    cout << "We will have to do a dummy test now since Origin.dat does not exist ! " << endl ;
+    cout << "We have to create a dummy test now ! " << endl ;
     random_device rd;
     mt19937 gen(rd());
     uniform_int_distribution<> dis(0, VOL);
     int Seed = data[dis(gen)][0];
     cout << "Random seed is :: " << Seed << endl ;
+            
+    
             
     for ( i = 0 ; i < VOL ; i ++){
                 
