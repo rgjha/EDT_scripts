@@ -151,6 +151,7 @@ int main(int argc, char *argv[])
      count = count+1;}
      cout << "Number of simplices actually smeared is " << count << endl ;
      
+     // NOTE : March 2018 differences were here !! 
      for (int i(0) ; i < count-1 ; i++){ 
      phi[0][data[i]] = 1 ; 
      }
