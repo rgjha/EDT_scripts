@@ -3,6 +3,9 @@
 # Find file with some name 'abc'
 find . -type f -name "abc*"
 
+# Find files whose size is less than 100 bytes
+find . -type f -size -100c
+
 # Untar ABC.tar.gz
 gunzip -c ABC.tar.gz | tar xopf -
 
@@ -66,6 +69,17 @@ nohup time bash ./script.sh > OUTFILE 2>&1
 # Kill processes
 lsof +D .
 kill -9 PID#
+
+# Delete files whose name is mentioned in FILE
+xargs rm < FILE
+
+# Sort a file
+sort FILE -o FILE
+
+# Run through files named *.txt in ascending order
+for d in `ls *.txt | sort -V`; do
+
+
 
 
 

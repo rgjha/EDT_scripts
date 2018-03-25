@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
   int initConfig; 
   initConfig = atoi(argv[1]);
 
-  double m(0.125);
+  double m(0.125);      // m for the identity matrix 
   double Ng(1);
   int count(0); 
 

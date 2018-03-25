@@ -3,6 +3,8 @@
 // Speed of at least ~ 100x from old 2015 code.
 // Shells for 16k lattice in less than a second.
 
+// Equivalent to what driver + update + test does.
+
 #include <iostream>
 #include <fstream>
 #include <random>
@@ -167,12 +169,11 @@ int main ( int argc, char* argv[] ) {
     
 
     else {
-        cout << "We have to create a dummy test now ! " << endl ;
         random_device rd;
         mt19937 gen(rd());
         uniform_int_distribution<> dis(0, VOL);
         int head_node = data[dis(gen)][0];
-        cout << "Random seed is :: " << head_node << endl ;
+        cout << "Random seed is --> " << head_node << endl ;
         
         BALL[head_node] = 1;
         myfile << head_node << endl ;
