@@ -1,0 +1,77 @@
+\documentclass{standalone}
+\usepackage{gnuplottex}
+\begin{document}
+\begin{gnuplot}[terminal=epslatex,terminaloptions=color]
+
+set style line 2222 lc rgb '#dd181f' lt 1 lw 3 pt 7 ps 2.0
+set style line 2 lc rgb 'black' lt 0 lw 2 pt 5 ps 1.5
+set style line 3 lc rgb '#000000' lt 1 lw 2 pt 7 ps 1.5
+set style line 4 lc rgb 'blue'  lt 1 lw 1 pt 7 ps 2.7
+set style line 44 lc rgb 'orange'  lt 1 lw 1 pt 4 ps 0.3
+set style line 5 lc rgb 'red'    lt 0 lw 4 pt 7 ps 2.5
+set style line 6 lc rgb 'purple'  lt 1 lw 3 pt 5 ps 2.5
+set style line 7 lc rgb 'blue'  lt 1 lw 2 pt 12 ps 1.1
+set style line 77 lc rgb 'brown'  lt 1 lw 2 pt 9 ps 2.6
+set style line 777 lc rgb 'brown'  lt 1 lw 2 pt 7 ps 2.6
+set style line 88 lc rgb 'red'  lt 1 lw 2 pt 9 ps 2.4
+set style line 1 lc rgb 'blue'  lt 1 lw 2 pt 4 ps 2.2
+set style line 11 lc rgb 'blue'  lt 1 lw 2 pt 9 ps 2.2
+set style line 111 lc rgb 'blue'  lt 1 lw 2 pt 7 ps 2.2
+set style line 8 lc rgb 'green'  lt 1 lw 2 pt 9 ps 1.5
+set style line 14 lc rgb 'blue'  lt 1 lw 2 pt 9 ps 2.2
+
+
+set style line 9 lc rgb 'brown'  lt 1 lw 2 pt 5 ps 2.0
+set style line 1111 lc rgb 'blue'  lt 1 lw 3 pt 7 ps 2.2
+
+# 6 -> open circle 
+# 7 --> solid circle 
+# 5 -> square solid 
+# 4 -> open square
+
+set label "{$\\bigotimes$}" at 0.0 , 0.0134640  
+set label "{$\\leftarrow$".' SUGRA}' at 0.003, 0.0134640 textcolor ls 1
+
+set style fill pattern 1 border
+set style data lines
+set key width 5.5
+set key font ",16"
+set key spacing 1.5
+
+set pointsize 1.00
+set key top left
+set lmargin 3.95
+
+set xlabel "{\\Large $1 / L^2$}"
+set ylabel "\\Large -$\\frac{s_{\\mathrm{Bos}}}{N^2 \\lambda^{3}}$ " rotate by 360 
+set ylabel "{\\Large $\\frac{-s_{\\rm Bos}}{N^2 \\lambda^3}$}" rotate by 360
+
+set ytics 0.01
+set mytics 4
+set xtics 0.04
+set mxtics 4
+
+set style line 1 lt 2 lw 3
+set style fill pattern 2
+set style fill solid
+set xtics out nomirror
+
+fit(x) = x >= 0 && x<0.03 ? 0.02271 + 1.536 * x : 0/0
+err(x) = x >= 0 && x<0.03 ? sqrt(0.0001042 - 0.00921 * x + 0.2386 * x**2) : 0/0
+set xr [-0.001:0.03]
+set xtics (0, "$1 / 12^2$" 1.0/144.0, "$1 / 8^2$" 1.0/64.0, "$1 / 6^2$" 1.0/36.0)
+set yr [0:0.08]
+
+
+# Must plot filled curves first, then lines and points on top
+plot '+' using ($1):(fit($1) + err($1)):(fit($1) - err($1)) lt 1 lc 6 lw 4 w filledcu fs transparent solid 0.2 t "", \
+     fit(x) lt 1 lc 6 lw 4 t "", \
+     fit(x) + err(x) lt 1 lc 6 lw 2 t "", \
+     fit(x) - err(x) lt 1 lc 6 lw 2 t "", \
+     "Nc8_t029.dat" u (1.0/($1*$1)):2:3 w yerrorbars lt 1 lc 6 pt 8 lw 4 t "", \
+     "Nc8_t029.int" w yerrorbars dt 2 lc 6 pt 2 lw 4 t ""
+
+
+
+\end{gnuplot}
+\end{document}

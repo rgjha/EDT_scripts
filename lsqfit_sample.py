@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import numpy as np
 import scipy as sp
 from numpy import ndarray
@@ -101,7 +102,7 @@ B = np.row_stack((origin, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r1
 #print (gv.evalcorr(g))
 
 covariance = np.cov(B)      # Covariance matrix of B #
-print "The bare mass is 0.25"
+print("The bare mass is 0.25")
 
 correlation = np.corrcoef(B)
 #print correlation          # Correlation matrix #
@@ -135,5 +136,5 @@ if __name__ == '__main__':
     p0 = None
     prior = make_prior()
     fit = lsqfit.nonlinear_fit(data = (X, Y), fcn=f, prior=prior, p0=p0)
-    print fit
-    print(fit.format(maxline=True))
+    print(fit)
+    print((fit.format(maxline=True)))

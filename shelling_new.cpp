@@ -3,7 +3,7 @@
 // Speed of at least ~ 100x from old 2015 code.
 // Shells for 16k lattice in less than a second.
 
-// Equivalent to what driver + update + test does.
+// Equivalent to what driver + update + test did.
 
 #include <iostream>
 #include <fstream>
@@ -142,6 +142,8 @@ vect.clear();
 
 
 // --------------------------------------------
+// If the file 'origin' exists, we will do usual stuff
+// otherwise we need to select a dummy origin for selecting 5
 int main ( int argc, char* argv[] ) {
  
     loadfile();

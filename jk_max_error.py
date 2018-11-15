@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 '''This code calculates the jackknife error
    by going through all possible blocksize i.e
    1 through (length of data) and prints the average

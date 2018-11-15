@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 '''This code spits solution to the matrix equation :
 [(-Box+m*m)]*[Solution] = Delta Source. It reads N4inf from
 the original configuration file and then calculates the
@@ -11,7 +12,7 @@ configuration (trimmed after bash) '''
 ''' Last Edited : March 9, 2018 '''
 
 import numpy as np
-import cPickle as pickle
+import pickle as pickle
 import scipy as sp
 import scipy.sparse
 from numpy import ndarray
@@ -48,7 +49,7 @@ f2 = open(myfile, 'r')
 with open(myfile) as myFile:
     for num, line in enumerate(myFile, 1):
         if search in line:
-            lines = filter(None, (line.rstrip() for line in myFile))
+            lines = [_f for _f in (line.rstrip() for line in myFile) if _f]
             
             for line in lines:
                 for j in range(0,6):
@@ -62,7 +63,7 @@ with open(myfile) as myFile:
                         
                         
                         counter=collections.Counter(list)   # Import collections at top of the code #
-                        a, b = counter.keys(), counter.values()
+                        a, b = list(counter.keys()), list(counter.values())
                         a.insert(0,int(s[0]))               # Insert the pulled out element #
                         b[:] = [x*-1 for x in b]
                         b.insert(0, 5 + float(m_square)) # Insert Diagonal Values at 0th element # # Refer to the paper by Bakker and Smit #
@@ -123,7 +124,7 @@ with open(myfile) as myFile:
                 DEL[content[i]] = 1.00
             
             RG = np.count_nonzero(DEL)
-            print 'No. of sources (1 for pint, > 1 for wall) == ', RG
+            print(('No. of sources (1 for pint, > 1 for wall) == ', RG))
             RG1 = [i for i, e in enumerate(DEL) if e != 0]
             DATA = np.array(DEL)
             DEL_T = DEL.T
@@ -143,4 +144,4 @@ with open(myfile) as myFile:
                 file.close()
 
             runningTime = (time.time()-startTime)
-            print "This Python code ran for about %f seconds" % runningTime
+            print("This Python code ran for about %f seconds" % runningTime)

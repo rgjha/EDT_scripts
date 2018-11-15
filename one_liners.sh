@@ -79,6 +79,32 @@ sort FILE -o FILE
 # Run through files named *.txt in ascending order
 for d in `ls *.txt | sort -V`; do
 
+# Split SB.csv comma separated to file
+awk -F',' '{print $2}' SB.csv >> sb.txt
+
+# Cut a file between two line numbers passed
+sed -n "${args[0]},${args[1]} p" FINAL_4K_m0125 > 4K_0125
+
+# Change all extensions in directory
+for d in *.c ; do
+filename="${d%.*}"
+mv $filename.c $filename.cpp
+done
+
+# Change SSH key to not being asked to enter password each time
+ssh-keygen
+ssh-copy-id -i ~/.ssh/id_rsa.pub XXX@comet.sdsc.edu # Replace appropraitely
+ssh XXX@comet.sdsc.edu # Check that all is fine
+
+# Python 2 to 3
+for d in *.py ; do
+2to3 -w $d  >> /dev/null 2>&1
+sed 's/python/python3/g' $d >> tmp
+mv tmp $d
+done
+
+
+
 
 
 
