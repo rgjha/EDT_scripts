@@ -3,6 +3,10 @@
 # Find file with some name 'abc'
 find . -type f -name "abc*"
 
+# Change comma separated by tab separated and add each to new line 
+# Useful for Mathematica sometimes
+cat test.txt | tr '[,]' '[\t]' | tr " " "\n"
+
 # Find files whose size is less than 100 bytes
 find . -type f -size -100c
 
