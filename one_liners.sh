@@ -7,6 +7,9 @@ find . -type f -name "abc*"
 # Useful for Mathematica sometimes
 cat test.txt | tr '[,]' '[\t]' | tr " " "\n"
 
+# Delete files below some size 2700 (usually in units of ls -lrt output)
+find . -type f -size -2700c -exec rm '{}' \;
+
 # Find files whose size is less than 100 bytes
 find . -type f -size -100c
 
