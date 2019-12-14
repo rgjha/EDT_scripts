@@ -7,6 +7,9 @@ find . -type f -name "abc*"
 # Useful for Mathematica sometimes
 cat test.txt | tr '[,]' '[\t]' | tr " " "\n"
 
+# Merge line 'n' and 'n+1' together on one line 
+awk 'NR%2{printf "%s ",$0;next;}1' FILENAME 
+
 # Delete files below some size 2700 (usually in units of ls -lrt output)
 find . -type f -size -2700c -exec rm '{}' \;
 
