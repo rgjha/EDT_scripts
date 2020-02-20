@@ -8,7 +8,11 @@ find . -type f -name "abc*"
 cat test.txt | tr '[,]' '[\t]' | tr " " "\n"
 
 # Merge line 'n' and 'n+1' together on one line 
-awk 'NR%2{printf "%s ",$0;next;}1' FILENAME 
+awk 'NR%2{printf "%s ",$0;next;}1' FILENAME
+
+# Check the magnetization for my tensor script 
+awk 'NR%2{printf "%s ",$0;next;}1' input >> tmp1
+awk '{print $1, ($9-$3)/($12-$6), 0.50*($12+$6),$4, $5}' tmp1
 
 # Delete files below some size 2700 (usually in units of ls -lrt output)
 find . -type f -size -2700c -exec rm '{}' \;
