@@ -117,6 +117,31 @@ sed 's/python/python3/g' $d >> tmp
 mv tmp $d
 done
 
+# Submit jobs on Symmetry 
+#!/bin/bash 
+
+if [[ $# -ne 2 ]] ; then
+    echo '*** Forgetting arguments !! Order : "TEMP"  "FIELD" ' 
+    exit 0
+fi
+
+args=("$@")
+
+echo "#!/bin/bash" >> sub.sh
+echo "#SBATCH --job-name=SMA" >> sub.sh
+echo "#SBATCH --nodes=1" >> sub.sh
+echo "#SBATCH --output=/home/rjha1/log${args[0]}_${args[1]}.txt" >> sub.sh
+echo "#SBATCH --time=10:00:00" >> sub.sh
+echo "" >> sub.sh
+
+echo "set -euxo pipefail" >> sub.sh
+echo "" >> sub.sh
+echo "pwd" >> sub.sh
+echo "echo \"SLURM_JOB_ID=\$SLURM_JOB_ID\"" >> sub.sh
+echo "env OMP_NUM_THREADS=4 python 2d_XYv2.py $1 $2" >> sub.sh
+sbatch sub.sh
+rm sub.sh
+
 
 
 
