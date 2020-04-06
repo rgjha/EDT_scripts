@@ -7,6 +7,9 @@ find . -type f -name "abc*"
 # Useful for Mathematica sometimes
 cat test.txt | tr '[,]' '[\t]' | tr " " "\n"
 
+# Round off a text file 
+awk '{ printf("%.3g %.3g\n", $1, $2) }' file
+
 # Merge line 'n' and 'n+1' together on one line 
 awk 'NR%2{printf "%s ",$0;next;}1' FILENAME
 
